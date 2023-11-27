@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./photos/icons8-game-50.png">
+</head>
+
+<body class="all" id="body">
+    <div id="top" style="visibility: hidden;" class="top">
+        <!-- <button>Start</button> -->
+        <button onclick="reload()">Restart</button>
+
+        <div id="moves" class="timer"> 0 Moves</div>
+        <div class="wrapper2">
+            <div id="stopwatch">00:00:00:00</div>
+        </div>
+
+        <script>
+            const watch = document.querySelector("#stopwatch");
+            let millisecound = 0;
+            let timer;
+
+            function timeStart() {
+                gameStart = true;
+                document.getElementById('main').style.visibility = 'visible';
+                watch.style.color = "#0f62fe";
+                clearInterval(timer);
+                timer = setInterval(() => {
+                    millisecound += 10;
+
+                    let dateTimer = new Date(millisecound);
+
+                    watch.innerHTML =
+                        ('0' + dateTimer.getUTCHours()).slice(-2) + ':' +
+                        ('0' + dateTimer.getUTCMinutes()).slice(-2) + ':' +
+                        ('0' + dateTimer.getUTCSeconds()).slice(-2) + ':' +
+                        ('0' + dateTimer.getUTCMilliseconds()).slice(-3, -1);
+                }, 10);
+            }
+
+
+            function timePaused() {
+                watch.style.color = "white";
+                clearInterval(timer);
+            }
+
+            function timeReset() {
+                setInterval(timer)
+                millisecound = 0;
+                watch.innerHTML = "00:00:00:00";
+            }
+
+        </script>
+
+    </div>
+    <div id="main" class="main">
+        <div id="square" style="display: grid; gap: 5px;width: 600px;">
+        </div>
+    </div>
+    <div class="bottom" id="bottom">
+        <div class="bottomDiv">
+            <div id="configDiv" style="display: grid; gap: 10px;">
+                <!-- <button onclick="cellCount(4,3)">4x3</button>
+                <button onclick="cellCount(4,4)">4x4</button>
+                <button onclick="cellCount(4,5)">4x5</button>
+                <button onclick="cellCount(4,6)">4x6</button>
+                <button onclick="cellCount(6,5)">6x5</button>
+                <button onclick="cellCount(6,6)">6x6</button>
+                <button onclick="cellCount(7,6)">7x6</button> -->
+            </div>
+        </div>
+    </div>
+    <div id="end" class="end" style="visibility: hidden;">
+        <!-- <h4 class="win">YOU WON!</h4> -->
+        <div class="overlay"></div>
+
+        <div class="text">
+            <div class="wrapper">
+                <div id="L" class="letter">Y</div>
+                <div class="shadow">Y</div>
+            </div>
+            <div class="wrapper">
+                <div id="I" class="letter">O</div>
+                <div class="shadow">O</div>
+            </div>
+            <div class="wrapper">
+                <div id="G" class="letter">U</div>
+                <div class="shadow">U</div>
+            </div>
+            <div class="wrapper">
+                <div id="H" class="letter"> </div>
+                <div class="shadow"> </div>
+            </div>
+            <div class="wrapper">
+                <div id="T" class="letter">W</div>
+                <div class="shadow">W</div>
+            </div>
+            <div class="wrapper">
+                <div id="N" class="letter">O</div>
+                <div class="shadow">O</div>
+            </div>
+            <div class="wrapper">
+                <div id="E" class="letter">N</div>
+                <div class="shadow">N</div>
+            </div>
+            <div class="wrapper">
+                <div id="S" class="letter">!</div>
+                <div class="shadow">!</div>
+            </div>
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
